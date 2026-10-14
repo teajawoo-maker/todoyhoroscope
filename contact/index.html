@@ -1,17 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Contact Today Horoscope</title>
   <meta name="description" content="Contact information for Today Horoscope.">
-  <link rel="canonical" href="https://teajawoo-maker.github.io/todoyhoroscope/contact">
+  <meta name="hermes-content-version" content="df1a6a9ee7343e3322d9">
+  <link rel="canonical" href="https://todoyhoroscope.com/contact/">
   <meta name="robots" content="index,follow,max-image-preview:large">
+  
+  
+  <meta property="og:site_name" content="Today Horoscope">
+  <meta property="og:locale" content="en_US">
   <meta property="og:title" content="Contact Today Horoscope">
   <meta property="og:description" content="Contact information for Today Horoscope.">
-  <meta property="og:url" content="https://teajawoo-maker.github.io/todoyhoroscope/contact">
-  <meta property="og:type" content="article">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Contact Today Horoscope", "description": "Contact information for Today Horoscope.", "url": "https://teajawoo-maker.github.io/todoyhoroscope/contact", "inLanguage": "en", "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Today Horoscope"}}</script>
+  <meta property="og:url" content="https://todoyhoroscope.com/contact/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Contact Today Horoscope">
+  <meta name="twitter:description" content="Contact information for Today Horoscope.">
+  <meta name="twitter:url" content="https://todoyhoroscope.com/contact/">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://todoyhoroscope.com/#website", "url": "https://todoyhoroscope.com/", "name": "Today Horoscope", "inLanguage": "en"}, {"@type": "WebPage", "@id": "https://todoyhoroscope.com/contact/#webpage", "url": "https://todoyhoroscope.com/contact/", "name": "Contact Today Horoscope", "description": "Contact information for Today Horoscope.", "isPartOf": {"@id": "https://todoyhoroscope.com/#website"}, "inLanguage": "en"}]}</script>
+  
   <style>
     :root {
       color-scheme: light;
@@ -28,40 +38,55 @@
     header { padding-top: 28px; padding-bottom: 20px; }
     nav { display: flex; gap: 14px; flex-wrap: wrap; font-family: Arial, sans-serif; font-size: 14px; }
     nav a { color: var(--blue); text-decoration: none; }
+    nav a:hover, .zodiac-grid a:hover { text-decoration: underline; }
     h1 { font-size: clamp(2rem, 6vw, 3.6rem); line-height: 1.04; margin: 26px 0 12px; letter-spacing: 0; }
     h2 { font-size: 1.35rem; margin-top: 32px; }
     .dek { color: var(--muted); font-size: 1.12rem; line-height: 1.6; max-width: 720px; }
+    .date-note { color: var(--gold); font-family: Arial, sans-serif; font-size: .95rem; margin: 0 0 20px; }
+    .hero-visual { margin: 24px 0 0; overflow: hidden; border: 1px solid #2b3a4d; border-radius: 8px; background: #050a12; box-shadow: 0 16px 40px rgba(3, 11, 23, .18); }
+    .hero-visual img { display: block; width: 100%; height: auto; aspect-ratio: 1536 / 839; object-fit: cover; }
     article { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: clamp(18px, 4vw, 34px); box-shadow: 0 16px 40px rgba(23, 32, 42, .06); }
     p, li { font-size: 1.06rem; line-height: 1.75; }
     ul { padding-left: 1.25rem; }
     .ad-note { margin: 26px 0; border: 1px solid #ead9ad; background: #fffaf0; border-radius: 8px; padding: 12px 14px; color: #69501a; font-family: Arial, sans-serif; }
     .zodiac-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 22px 0; }
     .zodiac-grid a { display: block; border: 1px solid var(--line); border-radius: 8px; padding: 12px; background: #fff; text-decoration: none; color: var(--blue); font-family: Arial, sans-serif; }
+    .zodiac-grid a[aria-current="page"] { border-color: var(--gold); color: var(--gold); font-weight: 700; }
+    .table-wrap { overflow-x: auto; margin: 22px 0; }
+    table { width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; }
+    th, td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; line-height: 1.5; }
+    th { background: #eef3f8; }
+    .guide-tool { margin: 24px 0; border: 1px solid #b9c8d8; border-radius: 8px; background: #f7fbff; padding: 18px; }
+    .guide-tool h2 { margin-top: 0; }
+    .tool-row { display: grid; grid-template-columns: max-content minmax(120px, 1fr); gap: 10px 14px; align-items: center; font-family: Arial, sans-serif; }
+    .tool-row input, .tool-row select, .tool-row button { min-height: 44px; border: 1px solid #94a8bc; border-radius: 6px; background: #fff; color: var(--ink); padding: 9px 11px; font: inherit; }
+    .tool-row button { grid-column: 1 / -1; background: var(--blue); border-color: var(--blue); color: #fff; font-weight: 700; cursor: pointer; }
+    .tool-result { min-height: 1.75rem; margin-bottom: 0; }
+    @media (max-width: 520px) { .tool-row { grid-template-columns: 1fr; } .tool-row button { grid-column: auto; } }
     footer { padding-top: 24px; padding-bottom: 36px; color: var(--muted); font-family: Arial, sans-serif; font-size: 14px; }
   </style>
 </head>
 <body>
   <header>
     <nav>
-      <a href="/todoyhoroscope/">Home</a>
-      <a href="/todoyhoroscope/zodiac/ox/">Daily Zodiac</a>
-      <a href="/todoyhoroscope/about/">About</a>
-      <a href="/todoyhoroscope/privacy/">Privacy</a>
-      <a href="/todoyhoroscope/disclosure/">Disclosure</a>
-      <a href="/todoyhoroscope/contact/">Contact</a>
+      <a href="/">Home</a>
+      <a href="/zodiac/ox/">Daily Zodiac</a>
+      <a href="/guides/chinese-zodiac-signs/">Zodiac Guide</a>
+      <a href="/about/">About</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/disclosure/">Disclosure</a>
+      <a href="/contact/">Contact</a>
     </nav>
     <h1>Contact Today Horoscope</h1>
     <p class="dek">Contact information for Today Horoscope.</p>
+    
+    
   </header>
   <main>
     <article>
-      <aside class="ad-note" aria-label="Advertising notice">
-  <p>Advertising space is reserved for future AdSense activation. No ad-click prompts are used.</p>
-</aside>
+      
       <p>For site questions, editorial feedback, or privacy requests, contact the site owner through the official domain contact channel configured for this website.</p>
-      <aside class="ad-note" aria-label="Advertising notice">
-  <p>Advertising space is reserved for future AdSense activation. No ad-click prompts are used.</p>
-</aside>
+      
     </article>
   </main>
   <footer>
