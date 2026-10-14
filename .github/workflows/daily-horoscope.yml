@@ -1,0 +1,70 @@
+name: Daily horoscope
+
+# 뉴욕 자정 이후에 돌아갑니다.
+# 05:15 UTC = 표준시 00:15, 서머타임 01:15. 둘 다 달력 날짜가 이미 바뀐 시각입니다.
+on:
+  schedule:
+    - cron: "15 5 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Optional YYYY-MM-DD. Leave empty to use today in America/New_York."
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-horoscope
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate today's readings
+        id: generate
+        env:
+          HOROSCOPE_DATE: ${{ inputs.date }}
+        run: |
+          set -euo pipefail
+          DATE="$(node scripts/generate-daily.mjs)"
+          echo "date=${DATE}" >> "$GITHUB_OUTPUT"
+
+      - name: Verify structure and variety
+        run: node scripts/verify-daily.mjs
+
+      - name: Commit and push
+        env:
+          PUSH_TOKEN: ${{ secrets.HOROSCOPE_PUSH_TOKEN || github.token }}
+          DATE: ${{ steps.generate.outputs.date }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html sitemap.xml zodiac
+          if git diff --staged --quiet; then
+            echo "Daily pages already match ${DATE}."
+            exit 0
+          fi
+          git commit -m "Update daily horoscope for ${DATE}"
+          git push "https://x-access-token:${PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Deploy with Vercel CLI when opted in
+        if: vars.HOROSCOPE_DEPLOY == 'vercel-cli'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: npx --yes vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN"

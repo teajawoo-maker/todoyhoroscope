@@ -1,3 +1,28 @@
 User-agent: *
 Allow: /
-Sitemap: https://teajawoo-maker.github.io/todoyhoroscope/sitemap.xml
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://todoyhoroscope.com/sitemap.xml
