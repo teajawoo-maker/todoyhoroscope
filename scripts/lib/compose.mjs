@@ -7,6 +7,7 @@ import {
   advantageFrames,
   cautionCheckFrames,
   CLOSE_CHECKS,
+  closingFrames,
   CUES,
   cueFrames,
   FOLLOWS,
@@ -15,6 +16,7 @@ import {
   OPENERS,
   promptFrames,
   TAILS,
+  themeCheckFrames,
   themeFrames,
   THEMES,
   URGENCY,
@@ -89,6 +91,8 @@ export function composeAnimal(animal, index, iso, long) {
   const moneyCheck = dealOne(MONEY_CHECKS, iso, "money-checks", index);
   const closeCheck = dealOne(CLOSE_CHECKS, iso, "close-checks", index);
   const cautionCheck = dealOne(cautionCheckFrames, iso, "caution-checks", index);
+  const themeCheck = dealOne(themeCheckFrames, iso, "theme-checks", index);
+  const closingFrame = dealOne(closingFrames, iso, "closing-frames", index);
   const homeTemplate = pickFresh(animal.home, iso, `${animal.id}:home`);
 
   return {
@@ -107,14 +111,14 @@ export function composeAnimal(animal, index, iso, long) {
     wellbeing,
     timing,
     checks: [
-      `Use ${theme} to choose the day's most useful priority.`,
+      themeCheck(theme),
       cautionCheck(caution),
       personalCheck,
       moneyCheck,
       closeCheck,
     ],
     prompt: promptFrame(cue),
-    closing: `review the result through the ${animal.name} lens of ${strength}. ${tail}`,
+    closing: `${closingFrame(animal.name, strength)} ${tail}`,
     homeSentence: homeTemplate.replaceAll("{theme}", theme),
   };
 }

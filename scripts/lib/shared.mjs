@@ -315,3 +315,34 @@ export const promptFrames = [
   (cue) => `Which conversation becomes fairer when ${cue} is named out loud?`,
   (cue) => `What evidence would you collect if ${cue} were the only guidance you kept?`,
 ];
+
+// 2026-10-24 proposal: these two lines used to be one fixed template on all 12 pages every day.
+export const themeCheckFrames = [
+  (theme) => `Use ${theme} to choose the day's most useful priority.`,
+  (theme) => `Let ${theme} decide which task goes first.`,
+  (theme) => `Pick one priority that fits ${theme} and let the rest wait.`,
+  (theme) => `Ask which item on your list ${theme} would actually move forward.`,
+  (theme) => `Before noon, match one real task to ${theme}.`,
+  (theme) => `Treat ${theme} as a filter: keep the task that passes it.`,
+  (theme) => `Write down the one job where ${theme} matters most today.`,
+  (theme) => `If two tasks compete, give the slot to the one closer to ${theme}.`,
+  (theme) => `Choose a single place where ${theme} can show up today.`,
+  (theme) => `Start the day by naming what ${theme} means in your own schedule.`,
+  (theme) => `Spend your first focused hour on whatever ${theme} points to.`,
+  (theme) => `Check your plan once against ${theme} and cut one item that does not fit.`,
+];
+
+export const closingFrames = [
+  (name, strength) => `review the result through the ${name} lens of ${strength}.`,
+  (name, strength) => `ask yourself where ${strength} helped most.`,
+  (name, strength) => `look back for one moment when ${strength} made a real difference.`,
+  (name, strength) => `notice whether the ${name} strength of ${strength} got any room to work.`,
+  (name, strength) => `give yourself credit for any moment of ${strength}, however small.`,
+  (name, strength) => `check how much of the day ran on ${strength} and how much on habit.`,
+  (name, strength) => `write one line about ${strength} and where it showed up.`,
+  (name, strength) => `see whether ${strength} was used on purpose or only by accident.`,
+  (name, strength) => `pick the hour when ${strength} worked best and remember why.`,
+  (name, strength) => `measure the day by ${strength}, not by how busy it felt.`,
+  (name, strength) => `trace one good outcome back to ${strength}.`,
+  (name, strength) => `let ${strength} be the yardstick for what went well.`,
+];
