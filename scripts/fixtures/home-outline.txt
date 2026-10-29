@@ -101,6 +101,12 @@ h2
 /h2
 p
 /p
+p
+strong
+/strong
+a
+/a
+/p
 h2
 /h2
 p
