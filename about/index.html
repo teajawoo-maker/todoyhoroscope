@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="About Today Horoscope">
   <meta name="twitter:description" content="Who runs Today Horoscope, why it exists, and how the daily Chinese zodiac readings and guides are made and corrected.">
   <meta name="twitter:url" content="https://todoyhoroscope.com/about/">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://todoyhoroscope.com/#website", "url": "https://todoyhoroscope.com/", "name": "Today Horoscope", "inLanguage": "en"}, {"@type": "WebPage", "@id": "https://todoyhoroscope.com/about/#webpage", "url": "https://todoyhoroscope.com/about/", "name": "About Today Horoscope", "description": "Who runs Today Horoscope, why it exists, and how the daily Chinese zodiac readings and guides are made and corrected.", "isPartOf": {"@id": "https://todoyhoroscope.com/#website"}, "inLanguage": "en"}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://todoyhoroscope.com/#website", "url": "https://todoyhoroscope.com/", "name": "Today Horoscope", "inLanguage": "en"}, {"@type": "WebPage", "@id": "https://todoyhoroscope.com/about/#webpage", "url": "https://todoyhoroscope.com/about/", "name": "About Today Horoscope", "description": "Who runs Today Horoscope, why it exists, and how the daily Chinese zodiac readings and guides are made and corrected.", "isPartOf": {"@id": "https://todoyhoroscope.com/#website"}, "inLanguage": "en", "dateModified": "2026-10-19", "breadcrumb": {"@id": "https://todoyhoroscope.com/about/#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://todoyhoroscope.com/about/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://todoyhoroscope.com/"}, {"@type": "ListItem", "position": 2, "name": "About", "item": "https://todoyhoroscope.com/about/"}]}]}</script>
   
   <style>
     :root {
@@ -64,6 +64,9 @@
     .tool-result { min-height: 1.75rem; margin-bottom: 0; }
     @media (max-width: 520px) { .tool-row { grid-template-columns: 1fr; } .tool-row button { grid-column: auto; } }
     footer { padding-top: 24px; padding-bottom: 36px; color: var(--muted); font-family: Arial, sans-serif; font-size: 14px; }
+.breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 14px 0 0; font-size: 0.9rem; }
+.breadcrumb li + li::before { content: "\203A"; margin-right: 6px; color: var(--muted, #666); }
+.breadcrumb a { color: var(--blue); text-decoration: none; }
   </style>
 </head>
 <body>
@@ -77,6 +80,7 @@
       <a href="/disclosure/">Disclosure</a>
       <a href="/contact/">Contact</a>
     </nav>
+    <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">About</li></ol></nav>
     <h1>About Today Horoscope</h1>
     <p class="dek">Who runs Today Horoscope, why it exists, and how the daily Chinese zodiac readings and guides are made and corrected.</p>
     

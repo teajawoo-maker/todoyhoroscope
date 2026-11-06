@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="Disclaimer and Advertising Disclosure">
   <meta name="twitter:description" content="Today Horoscope is for entertainment and personal reflection, not prediction or professional advice. How ads and any affiliate links work on this site.">
   <meta name="twitter:url" content="https://todoyhoroscope.com/disclosure/">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://todoyhoroscope.com/#website", "url": "https://todoyhoroscope.com/", "name": "Today Horoscope", "inLanguage": "en"}, {"@type": "WebPage", "@id": "https://todoyhoroscope.com/disclosure/#webpage", "url": "https://todoyhoroscope.com/disclosure/", "name": "Disclaimer and Advertising Disclosure", "description": "Today Horoscope is for entertainment and personal reflection, not prediction or professional advice. How ads and any affiliate links work on this site.", "isPartOf": {"@id": "https://todoyhoroscope.com/#website"}, "inLanguage": "en"}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://todoyhoroscope.com/#website", "url": "https://todoyhoroscope.com/", "name": "Today Horoscope", "inLanguage": "en"}, {"@type": "WebPage", "@id": "https://todoyhoroscope.com/disclosure/#webpage", "url": "https://todoyhoroscope.com/disclosure/", "name": "Disclaimer and Advertising Disclosure", "description": "Today Horoscope is for entertainment and personal reflection, not prediction or professional advice. How ads and any affiliate links work on this site.", "isPartOf": {"@id": "https://todoyhoroscope.com/#website"}, "inLanguage": "en", "dateModified": "2026-10-19", "breadcrumb": {"@id": "https://todoyhoroscope.com/disclosure/#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://todoyhoroscope.com/disclosure/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://todoyhoroscope.com/"}, {"@type": "ListItem", "position": 2, "name": "Disclosure", "item": "https://todoyhoroscope.com/disclosure/"}]}]}</script>
   
   <style>
     :root {
@@ -64,6 +64,9 @@
     .tool-result { min-height: 1.75rem; margin-bottom: 0; }
     @media (max-width: 520px) { .tool-row { grid-template-columns: 1fr; } .tool-row button { grid-column: auto; } }
     footer { padding-top: 24px; padding-bottom: 36px; color: var(--muted); font-family: Arial, sans-serif; font-size: 14px; }
+.breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 14px 0 0; font-size: 0.9rem; }
+.breadcrumb li + li::before { content: "\203A"; margin-right: 6px; color: var(--muted, #666); }
+.breadcrumb a { color: var(--blue); text-decoration: none; }
   </style>
 </head>
 <body>
@@ -77,6 +80,7 @@
       <a href="/disclosure/">Disclosure</a>
       <a href="/contact/">Contact</a>
     </nav>
+    <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Disclosure</li></ol></nav>
     <h1>Disclaimer and Advertising Disclosure</h1>
     <p class="dek">Today Horoscope is for entertainment and personal reflection, not prediction or professional advice. How ads and any affiliate links work on this site.</p>
     

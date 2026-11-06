@@ -70,6 +70,9 @@
     .tool-result { min-height: 1.75rem; margin-bottom: 0; }
     @media (max-width: 520px) { .tool-row { grid-template-columns: 1fr; } .tool-row button { grid-column: auto; } }
     footer { padding-top: 24px; padding-bottom: 36px; color: var(--muted); font-family: Arial, sans-serif; font-size: 14px; }
+    .breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 14px 0 0; font-size: 0.9rem; }
+    .breadcrumb li + li::before { content: "\203A"; margin-right: 6px; color: var(--muted, #666); }
+    .breadcrumb a { color: var(--blue); text-decoration: none; }
   </style>
 </head>
 <body>
