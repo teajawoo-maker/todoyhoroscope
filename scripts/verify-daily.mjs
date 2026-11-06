@@ -5,11 +5,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { composeAll, renderBody } from "./lib/compose.mjs";
 import { longDate, nextIso } from "./lib/dates.mjs";
-import { applySitemap, applyZodiacPage, generate, repoRoot } from "./generate-daily.mjs";
+import { DAILY_SITEMAP_URLS, applySitemap, applyZodiacPage, generate, repoRoot } from "./generate-daily.mjs";
 
 const ROOT = repoRoot();
 const ANIMALS = ["rat", "ox", "tiger", "rabbit", "dragon", "snake", "horse", "goat", "monkey", "rooster", "dog", "pig"];
-const STYLE_HASH = "fd5bdec45395890f475345c2e561c00ff18c5e65fbebc0db4ff0b64fa4612888";
+const STYLE_HASH = "f0e198db376b8048e708f19c7e96aed6b6bb53f82fc9effc90edc48338871f01";
 const PUBLISHED = "2026-09-02";
 const FIXED_SENTENCES = new Set([
   "This horoscope offers general reflection only and is not financial advice.",
@@ -191,28 +191,30 @@ function checkHome(html, iso) {
 }
 
 function checkSitemap(xml, iso) {
+  const blocks = [...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
   const withDates = [...xml.matchAll(/<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)];
-  if (withDates.length !== 13) fail(`lastmod가 있는 URL이 ${withDates.length}개입니다.`);
+  if (withDates.length !== blocks.length) fail(`lastmod 없는 sitemap URL이 있습니다 (${withDates.length}/${blocks.length}).`);
   const locs = withDates.map((match) => match[1]);
   if (!locs.includes("https://todoyhoroscope.com/")) fail("sitemap 홈 lastmod가 없습니다.");
   for (const animal of ANIMALS) {
     if (!locs.includes(`https://todoyhoroscope.com/zodiac/${animal}/`)) {
       fail(`sitemap에 ${animal} lastmod가 없습니다.`);
     }
+    for (const kind of ["zodiac", "signs"]) {
+      const block = blocks.find((text) => text.includes(`<loc>https://todoyhoroscope.com/${kind}/${animal}/</loc>`)) || "";
+      if (!block.includes(`/assets/og/${animal}-1200x630.jpg</image:loc>`)) fail(`${kind}/${animal} sitemap 이미지가 띠별 OG 이미지가 아닙니다.`);
+    }
   }
-  for (const match of withDates) {
-    if (match[2] !== iso) fail(`${match[1]} lastmod가 ${match[2]}입니다.`);
-  }
-  if (xml.includes("<lastmod>") && (xml.match(/<lastmod>/g) || []).length !== 13) {
-    fail("lastmod 개수가 13이 아닙니다.");
-  }
-  for (const evergreen of [
-    "https://todoyhoroscope.com/signs/rat/",
-    "https://todoyhoroscope.com/guides/chinese-zodiac-signs/",
-    "https://todoyhoroscope.com/tools/chinese-zodiac-sign-finder/",
-  ]) {
-    const block = xml.split(`<loc>${evergreen}</loc>`)[1]?.slice(0, 180) || "";
-    if (block.includes("<lastmod>")) fail(`${evergreen}에 lastmod가 새로 생겼습니다.`);
+  for (const [, loc, lastmod] of withDates) {
+    if (DAILY_SITEMAP_URLS.has(loc)) {
+      if (lastmod !== iso) fail(`${loc} lastmod가 ${lastmod}입니다.`);
+      continue;
+    }
+    const relative = loc.replace("https://todoyhoroscope.com/", "");
+    const page = jsonScripts(read(`${relative}index.html`))[0]["@graph"].find((node) => node["@type"] === "WebPage");
+    if (!page?.dateModified) fail(`${loc} 페이지에 dateModified가 없습니다.`);
+    else if (page.dateModified !== lastmod) fail(`${loc} lastmod ${lastmod} ≠ dateModified ${page.dateModified}`);
+    if (lastmod > iso) fail(`${loc} lastmod ${lastmod}가 미래 날짜입니다.`);
   }
 }
 

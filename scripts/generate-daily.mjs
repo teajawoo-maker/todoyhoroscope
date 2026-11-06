@@ -93,12 +93,24 @@ export function applyHomePage(html, readings) {
   return next;
 }
 
+export const DAILY_SITEMAP_URLS = new Set([
+  "https://todoyhoroscope.com/",
+  ...["rat", "ox", "tiger", "rabbit", "dragon", "snake", "horse", "goat", "monkey", "rooster", "dog", "pig"].map(
+    (animal) => `https://todoyhoroscope.com/zodiac/${animal}/`,
+  ),
+]);
+
 export function applySitemap(xml, iso) {
-  const matches = xml.match(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g) || [];
-  if (matches.length !== 13) {
-    throw new Error(`sitemap lastmod는 홈과 12띠, 총 13개여야 합니다. 현재 ${matches.length}개입니다.`);
+  let count = 0;
+  const next = xml.replace(/(<loc>([^<]+)<\/loc>\s*<lastmod>)\d{4}-\d{2}-\d{2}(<\/lastmod>)/g, (all, head, loc, tail) => {
+    if (!DAILY_SITEMAP_URLS.has(loc)) return all;
+    count += 1;
+    return `${head}${iso}${tail}`;
+  });
+  if (count !== 13) {
+    throw new Error(`sitemap 일일 lastmod는 홈과 12띠, 총 13개여야 합니다. 현재 ${count}개입니다.`);
   }
-  return xml.replace(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g, `<lastmod>${iso}</lastmod>`);
+  return next;
 }
 
 export function generate(root, override) {
